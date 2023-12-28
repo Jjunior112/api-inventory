@@ -9,6 +9,10 @@ const InventorySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    productQuantity:{
+        type: Number,
+        required: true
+    },
     productType:{
         type: String,
         required: true

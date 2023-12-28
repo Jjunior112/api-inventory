@@ -15,8 +15,6 @@ inventory.post('/inventory', async (req, res) => {
     }
 })
 
-
-
 inventory.get('/inventory', async (req, res) => {
     try {
         const inventory = await InventoryModel.find({})
