@@ -4,7 +4,10 @@ const InventoryModel = require('../models/inventory.model')
 
 const inventory = express.Router()
 
-inventory.post('/inventory', async (req, res) => {
+const checkToken = require('../middleware/checkToken')
+
+
+inventory.post('/inventory', checkToken, async (req, res) => {
     try {
         const inventory = await InventoryModel.create(req.body)
 
@@ -15,7 +18,7 @@ inventory.post('/inventory', async (req, res) => {
     }
 })
 
-inventory.get('/inventory', async (req, res) => {
+inventory.get('/inventory',checkToken, async (req, res) => {
     try {
         const inventory = await InventoryModel.find({})
 
@@ -25,7 +28,7 @@ inventory.get('/inventory', async (req, res) => {
         res.status(500).send(error.message)
     }
 })
-inventory.get('/inventory/:id', async (req, res) => {
+inventory.get('/inventory/:id',checkToken, async (req, res) => {
     try {
         const id = req.params.id
 
@@ -37,7 +40,7 @@ inventory.get('/inventory/:id', async (req, res) => {
         res.status(500).send(error.message)
     }
 })
-inventory.delete('/inventory/:id', async (req, res) => {
+inventory.delete('/inventory/:id',checkToken, async (req, res) => {
     try {
         const id = req.params.id
 
@@ -49,7 +52,7 @@ inventory.delete('/inventory/:id', async (req, res) => {
         res.status(500).send(error.message)
     }
 })
-inventory.patch('/inventory/:id', async (req, res) => {
+inventory.patch('/inventory/:id',checkToken, async (req, res) => {
     try {
         const id = req.params.id
 
